@@ -2,7 +2,11 @@ package com.example.flutter_player_plugin
 
 import android.content.Context
 import android.view.View
-import android.widget.TextView
+import androidx.media3.common.MediaItem
+import androidx.media3.exoplayer.ExoPlayer
+import androidx.media3.exoplayer.MediaPlayer
+import androidx.media3.exoplayer.MediaPlayerProvider
+import androidx.media3.ui.PlayerView
 import io.flutter.plugin.common.BinaryMessenger
 import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.MethodChannel
@@ -16,15 +20,21 @@ class ExoPlayerView internal constructor(
     id: Int
 ) :
     PlatformView, MethodCallHandler {
-    private val textView: TextView
+    private val playerView = PlayerView(context)
+    private val exoPlayer = ExoPlayer.Builder(context)
+        .setMediaPlayerProvider(MediaPlayerProvider { MediaPlayer(context) })
+        .build()
     private val methodChannel: MethodChannel
     override fun getView(): View {
-        return textView
+        return playerView
     }
 
     init {
-        textView = TextView(context)
-        textView.text = "Hari Hara Nathan"
+        playerView.player = exoPlayer
+        val mediaItem = MediaItem.Builder().setUri("https://d384padtbeqfgy.cloudfront.net/transcoded/8r65J7EY6NP/video.m3u8").build()
+        exoPlayer.setMediaItem(mediaItem)
+        exoPlayer.prepare()
+        exoPlayer.play()
         methodChannel = MethodChannel(messenger, "plugins.flutter_player_plugin/player_view_$id")
         methodChannel.setMethodCallHandler(this)
     }
@@ -38,11 +48,10 @@ class ExoPlayerView internal constructor(
 
     private fun setText(methodCall: MethodCall, result: MethodChannel.Result ) {
         val text = methodCall.arguments as String
-        textView.text = text
         result.success(null)
     }
     
     override fun dispose() {
-        TODO("Not yet implemented")
+        exoPlayer.release()
     }
 }

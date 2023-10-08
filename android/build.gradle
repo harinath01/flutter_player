@@ -48,6 +48,9 @@ android {
     dependencies {
         testImplementation 'org.jetbrains.kotlin:kotlin-test'
         testImplementation 'org.mockito:mockito-core:5.0.0'
+        implementation "androidx.media3:media3-exoplayer:1.0.1"
+        implementation "androidx.media3:media3-ui:1.0.1"
+        implementation "androidx.media3:media3-exoplayer-dash:1.0.1"
     }
 
     testOptions {
