@@ -9,7 +9,7 @@ buildscript {
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:7.3.0'
+        classpath 'com.android.tools.build:gradle:7.4.2'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
 }
@@ -45,12 +45,13 @@ android {
         minSdkVersion 16
     }
 
+    def mediaVersion = "1.0.2"
     dependencies {
         testImplementation 'org.jetbrains.kotlin:kotlin-test'
         testImplementation 'org.mockito:mockito-core:5.0.0'
-        implementation "androidx.media3:media3-exoplayer:1.0.1"
-        implementation "androidx.media3:media3-ui:1.0.1"
-        implementation "androidx.media3:media3-exoplayer-dash:1.0.1"
+        implementation "androidx.media3:media3-exoplayer:$mediaVersion"
+        implementation "androidx.media3:media3-ui:$mediaVersion"
+        implementation "androidx.media3:media3-exoplayer-dash:$mediaVersion"
     }
 
     testOptions {
