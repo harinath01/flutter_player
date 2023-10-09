@@ -22,8 +22,15 @@ class _MyAppState extends State<MyApp> {
         appBar: AppBar(
           title: const Text('Flutter player plugin'),
         ),
-        body: const Center(
-          child: PlayerView(),
+        body: Column(
+          children: [
+            Container(
+              height: 240,
+              color: Colors.black,
+              child: const Center(
+                  child: PlayerView(),
+            ))
+          ],
         ),
       ),
     );
