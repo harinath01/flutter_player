@@ -3,13 +3,8 @@ import Flutter
 import UIKit
 import AVKit
 
-class AVPlayerView: NSObject, FlutterPlatformView {
+class AVPlayerView: NSObject {
     private var playerViewController: AVPlayerViewController
-    private var _methodChannel: FlutterMethodChannel
-    
-    func view() -> UIView {
-        return playerViewController.view
-    }
     
     init(
         frame: CGRect,
@@ -26,17 +21,4 @@ class AVPlayerView: NSObject, FlutterPlatformView {
         super.init()
         _methodChannel.setMethodCallHandler(onMethodCall)
     }
-
-    func onMethodCall(call: FlutterMethodCall, result: FlutterResult) {
-        switch(call.method){
-        case "setText":
-            setText(call:call, result:result)
-        default:
-            result(FlutterMethodNotImplemented)
-        }
-    }
-
-    func setText(call: FlutterMethodCall, result: FlutterResult){
-        let text = call.arguments as! String
-    } 
 }
