@@ -42,16 +42,17 @@ android {
     }
 
     defaultConfig {
-        minSdkVersion 16
+        minSdkVersion 21
     }
 
-    def mediaVersion = "1.0.2"
+    def mediaVersion = "1.1.1"
     dependencies {
         testImplementation 'org.jetbrains.kotlin:kotlin-test'
         testImplementation 'org.mockito:mockito-core:5.0.0'
         implementation "androidx.media3:media3-exoplayer:$mediaVersion"
         implementation "androidx.media3:media3-ui:$mediaVersion"
         implementation "androidx.media3:media3-exoplayer-dash:$mediaVersion"
+        implementation "androidx.media3:media3-exoplayer-hls:$mediaVersion"
     }
 
     testOptions {
